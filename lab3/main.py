@@ -55,8 +55,8 @@ def render(time):
     # print_point_egg(N)
     # print_line_egg(N)
     # print_triangle_egg(N)
-    print_strip_egg(N)
-    # print_triangle_carpet_3d(-2, -2, -1, 4, 3)
+    # print_strip_egg(N)
+    print_triangle_carpet_3d(-2, -2, -1, 4, 3)
 
     glFlush()
 
@@ -81,8 +81,8 @@ def print_point_egg_part(points: list, i: int, j: int):
 def print_line_egg(N: int):
     points = calculate_egg_points(N)
     
-    for i in range(N):
-        for j in range(N):
+    for i in range(N - 1):
+        for j in range(N - 1):
             print_line_egg_part(points, i, j, N)
 
 
@@ -90,11 +90,11 @@ def print_line_egg_part(points: list, i: int, j: int, N: int):
     glColor3f(1, 1, 1)
     glBegin(GL_LINES)
 
-    next_j = j + 1 if j + 1 < N else 0 
+    next_j = j + 1
     glVertex3f(points[i][j][0], points[i][j][1], points[i][j][2])
     glVertex3f(points[i][next_j][0], points[i][next_j][1], points[i][next_j][2])
 
-    next_i = i + 1 if i + 1 < N else 0 
+    next_i = i
     glVertex3f(points[i][j][0], points[i][j][1], points[i][j][2])
     glVertex3f(points[next_i][j][0], points[next_i][j][1], points[next_i][j][2])    
 
@@ -104,16 +104,16 @@ def print_line_egg_part(points: list, i: int, j: int, N: int):
 def print_triangle_egg(N: int):
     points = calculate_egg_points(N)
     
-    for i in range(N):
-        for j in range(N):
+    for i in range(N - 1):
+        for j in range(N - 1):
             print_triangle_egg_part(points, i, j, N)
 
 
 color_range = 30
 colors = [[[random.random(), random.random(), random.random()] for _ in range(color_range)] for _ in range(color_range)]
 def print_triangle_egg_part(points: list, i: int, j: int, N: int):
-    next_i = i + 1 if i + 1 < N else 0
-    next_j = j + 1 if j + 1 < N else 0
+    next_i = i + 1 
+    next_j = j + 1 
 
     glBegin(GL_TRIANGLES)
 
